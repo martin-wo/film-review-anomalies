@@ -5,7 +5,7 @@ from gensim import corpora
 documents = [];
 
 # read from csv
-with open('./data/data_html_ascii.csv', 'r') as reviews:
+with open('../data/data_html_ascii.csv', 'r') as reviews:
     reader = csv.reader(reviews, delimiter= ';')
     for row in reader:
         documents.append(row[2])
@@ -15,7 +15,8 @@ documents = [[word for word in document.lower().split()] for document in documen
 
 # create dictionary
 dictionary = corpora.Dictionary(documents)
+dictionary.save('../data/film_reviews.dict')
 
 # create bag of words representations
 corpus = [dictionary.doc2bow(document) for document in documents]
-corpora.MmCorpus.serialize('data/corpus.mm', corpus)  # store to disk, for later use
+corpora.MmCorpus.serialize('../data/corpus.mm', corpus)  # store to disk, for later use
