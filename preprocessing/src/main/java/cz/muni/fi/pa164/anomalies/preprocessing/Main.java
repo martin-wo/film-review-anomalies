@@ -1,5 +1,6 @@
 package cz.muni.fi.pa164.anomalies.preprocessing;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,20 +31,24 @@ public class Main {
 	private static final Logger logger = LoggerFactory.getLogger(Main.class);
 	private static final String CSV_INPUT = "../data/data_html_ascii.csv";
 	private static final String CSV_OUTPUT = "../data/preprocessed.csv";
+	private static final String STOPWORDS = "../data/stopwords.txt";
 
 	public static void main(String[] args) {
 		logger.info("Started at " + LocalDateTime.now().toString());
 		Properties props = new Properties();
 		props.setProperty("annotators", "tokenize, ssplit, pos, lemma");
 		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-
+		
+		HashSet<String> stopwords = readStopwords();
 		LinkedList<Review> reviews = readReviews();
 		for (Review review : reviews) {
 			Annotation annotation = annotateDocument(props, pipeline,
 					review.getRawText());
 			LinkedList<String> lemmata = fetchLemmata(annotation);
+			lemmata.removeAll(stopwords);
 			review.setLemmata(String.join(" ", lemmata));
 		}
+		
 
 		// TODO: annotating all at once like pipeline.annotate(annotations);
 		// causes java.lang.OutOfMemoryError: GC
@@ -53,7 +58,7 @@ public class Main {
 		persistAnnotatedReviews(reviews);
 		logger.info("Finished at " + LocalDateTime.now().toString());
 	}
-
+	
 	private static LinkedList<String> fetchLemmata(Annotation annotation) {
 		LinkedList<String> lemmata = new LinkedList<String>();
 		List<CoreMap> sentences = annotation.get(SentencesAnnotation.class);
@@ -107,4 +112,16 @@ public class Main {
 		return reviews;
 	}
 
+	private static HashSet<String> readStopwords() {
+		HashSet<String> stopwords = new HashSet<>();
+		String line;
+		try (BufferedReader br = new BufferedReader(new FileReader(STOPWORDS))) {
+			while ((line = br.readLine()) != null) {
+				stopwords.add(line.trim());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return stopwords;
+	}
 }

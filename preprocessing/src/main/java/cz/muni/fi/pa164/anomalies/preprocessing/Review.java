@@ -54,5 +54,4 @@ public class Review {
 	public void setAnnotation(Annotation annotation) {
 		this.annotation = annotation;
 	}
-
 }
