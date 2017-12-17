@@ -1,8 +1,13 @@
 package cz.muni.fi.pa164.anomalies.preprocessing;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import java.io.BufferedReader;
@@ -30,21 +35,32 @@ public class Main {
 	private static final Logger logger = LoggerFactory.getLogger(Main.class);
 	private static final String CSV_INPUT = "../data/data_html_ascii.csv";
 	private static final String CSV_OUTPUT = "../data/preprocessed.csv";
+	private static final String STOPWORDS = "../data/stopwords.txt";
 
 	public static void main(String[] args) {
 		logger.info("Started at " + LocalDateTime.now().toString());
 		Properties props = new Properties();
 		props.setProperty("annotators", "tokenize, ssplit, pos, lemma");
 		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-
+		
+		//HashSet<String> stopwords = readStopwords();
+		
 		LinkedList<Review> reviews = readReviews();
 		for (Review review : reviews) {
 			Annotation annotation = annotateDocument(props, pipeline,
 					review.getRawText());
 			LinkedList<String> lemmata = fetchLemmata(annotation);
-			review.setLemmata(String.join(" ", lemmata));
+			//lemmata.removeAll(stopwords);
+			review.setLemmata(lemmata);
 		}
 
+		List<String> stopwords = getStopwords(reviews);
+		for (Review review : reviews) {
+			List<String> lemmata = review.getLemmata();
+			lemmata.removeAll(stopwords);
+			review.setLemmata(lemmata);
+		}
+		
 		// TODO: annotating all at once like pipeline.annotate(annotations);
 		// causes java.lang.OutOfMemoryError: GC
 		// overhead limit exceeded
@@ -53,7 +69,33 @@ public class Main {
 		persistAnnotatedReviews(reviews);
 		logger.info("Finished at " + LocalDateTime.now().toString());
 	}
-
+	
+	private static List<String> getStopwords(List<Review> reviews) {
+		Map<String, Integer> stopwords = new HashMap<>();
+		for (Review review : reviews) {
+			for (String lemma : review.getLemmata()) {
+				Integer n = stopwords.get(lemma);
+				n = (n == null) ? 1 : ++n;
+				stopwords.put(lemma, n);
+			}
+		}
+		
+	    List<Map.Entry<String, Integer>> list = new LinkedList<>(stopwords.entrySet());
+	    Collections.sort( list, new Comparator<Map.Entry<String, Integer>>() {
+	        @Override
+	        public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+	            return (o2.getValue()).compareTo(o1.getValue());
+	        }
+	    });
+	    	
+	    LinkedList<String> result = new LinkedList<String>();
+	    for (Map.Entry<String, Integer> entry : list) {
+	    	result.add(entry.getKey());
+	    }
+	    
+	    return result.subList(0, Math.min(result.size(), 100));
+	}
+	
 	private static LinkedList<String> fetchLemmata(Annotation annotation) {
 		LinkedList<String> lemmata = new LinkedList<String>();
 		List<CoreMap> sentences = annotation.get(SentencesAnnotation.class);
@@ -81,7 +123,7 @@ public class Main {
 			while (iterator.hasNext()) {
 				Review review = iterator.next();
 				line = review.getId() + ";" + review.getRating() + ";"
-						+ review.getLemmata() + System.lineSeparator();
+						+ String.join(" ", review.getLemmata()) + System.lineSeparator();
 				bw.write(line);
 			}
 		} catch (IOException e) {
@@ -107,4 +149,16 @@ public class Main {
 		return reviews;
 	}
 
+	private static HashSet<String> readStopwords() {
+		HashSet<String> stopwords = new HashSet<>();
+		String line;
+		try (BufferedReader br = new BufferedReader(new FileReader(STOPWORDS))) {
+			while ((line = br.readLine()) != null) {
+				stopwords.add(line.trim());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return stopwords;
+	}
 }
