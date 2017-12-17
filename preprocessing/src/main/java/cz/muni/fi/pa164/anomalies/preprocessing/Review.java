@@ -1,12 +1,14 @@
 package cz.muni.fi.pa164.anomalies.preprocessing;
 
+import java.util.List;
+
 import edu.stanford.nlp.pipeline.Annotation;
 
 public class Review {
 	private String id;
 	private int rating;
 	private String rawText;
-	private String lemmata;
+	private List<String> lemmata;
 	private Annotation annotation;
 
 	public String getId() {
@@ -33,11 +35,11 @@ public class Review {
 		this.rawText = rawText;
 	}
 
-	public String getLemmata() {
+	public List<String> getLemmata() {
 		return lemmata;
 	}
 
-	public void setLemmata(String lemmata) {
+	public void setLemmata(List<String> lemmata) {
 		this.lemmata = lemmata;
 	}
 

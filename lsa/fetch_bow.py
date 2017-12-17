@@ -5,7 +5,7 @@ from gensim import corpora
 documents = [];
 
 # read from csv
-with open('../data/data_html_ascii.csv', 'r') as reviews:
+with open('../data/preprocessed.csv', 'r') as reviews:
     reader = csv.reader(reviews, delimiter= ';')
     for row in reader:
         documents.append(row[2])
