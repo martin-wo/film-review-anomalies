@@ -8,7 +8,9 @@ documents = [];
 with open('../data/preprocessed.csv', 'r') as reviews:
     reader = csv.reader(reviews, delimiter= ';')
     for row in reader:
-        documents.append(row[2])
+        # if belongs to training set
+        if "train" in row[0]:
+            documents.append(row[2])
 
 # lowercase        
 documents = [[word for word in document.lower().split()] for document in documents]
