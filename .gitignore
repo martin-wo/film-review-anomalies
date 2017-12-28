@@ -1,6 +1,10 @@
 # gensim auxiliary files
 *mm
 *index
+*lsi
+*projection
+*npy
+lsa_annotations.csv
 
 # eclipse
 .settings
