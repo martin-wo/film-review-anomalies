@@ -1,6 +1,7 @@
 # gensim auxiliary files
 *mm
 *index
+*dict
 *lsi
 *projection
 *npy
