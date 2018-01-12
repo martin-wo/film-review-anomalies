@@ -10,3 +10,6 @@ lsa_train.csv
 
 # eclipse
 .settings
+
+# CODB
+*arff
