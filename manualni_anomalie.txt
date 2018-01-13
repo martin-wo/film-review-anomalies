@@ -1,0 +1,24 @@
+Ruènì vybrané testové anomální recenze:
+
+346_7 ne
+629_7 ne
+1230_10 ne
+1560_4 ne
+1599_7 ano
+2370_4 ano
+3712_4 ano
+3720_4 ano
+3754_10 ano
+4134_7 ne
+4615_4 ano
+5248_1 ano
+6442_3 ne
+7058_2 ano
+8050_7 ne
+8346_1 ano
+8517_8 ano
+8753_4 ano
+10027_7 nenalezeno
+10340_7 ne
+12031_1 ne
+12495_10 ano
