@@ -416,8 +416,8 @@ function (pcobj, choices = 1:2, scale = 1, pc.biplot = TRUE,
 
 
 ## Tmp working part of program by Matej Vanek
-#data <- read.csv("lsa_2500x100.csv")
-#sink("vysledky_cor_verbose.txt")
-#rr <- classOutlierRanking(stars ~ .,data,verbose=TRUE)
-#print(rr)
-#sink()
+data <- read.csv("lsa_test_normalized_informative_pca.csv")
+sink("cor.out")
+rr <- classOutlierRanking(stars ~ .,data,verbose=TRUE)
+print(rr)
+sink()

@@ -4,22 +4,23 @@ from sys import argv
 import csv
 import math
 
-mode = argv[1]
+input_file_name = argv[1]
 
-with open('../data/codb_dataset.arff', 'w') as codb:
-    with open('../data/lsa_' + mode + '.csv', 'r') as reviews:
-        reader = csv.reader(reviews, delimiter= ';')
+with open('./data/codb_dataset_nlp_final.arff', 'w') as codb:
+    with open(input_file_name, 'r') as reviews:
+        reader = csv.reader(reviews, delimiter= ',')
         writer = csv.writer(codb, delimiter = ',')
-        codb.write('@relation lsa\n')
+        codb.write('@relation nlp\n')
 
-        for i in range(len(next(reader)) - 1):
-            codb.write('@attribute \'lsa_%i\' real\n' % i)
+        for i in range(len(next(reader)) - 2):
+            codb.write('@attribute \'nlp_%i\' real\n' % i)
         codb.write('@attribute \'Class\' {n,p}\n')
+
         codb.write('@data\n')
 
         for row in reader:
-            # extract only p/n lable
+            # extract only p/n label
             label = row[0][-1]
-            row[0:-1] = [i for i in row[1:]]
-            row[-1] = label
-            writer.writerow(row)
+            new_row = [i for i in row[2:]]
+            new_row.append(label)
+            writer.writerow(new_row)

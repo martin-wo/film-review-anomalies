@@ -13,3 +13,6 @@ lsa_train.csv
 
 # CODB
 *arff
+*out
+
+*zip
