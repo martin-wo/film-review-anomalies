@@ -15,7 +15,7 @@ Další poznámky:
 - (SOLVED) Sekce 6.3: úplně mimo. V názvu je LOFactor, ale píšete o úplně jiné metodě. Tuto sekci prosím zrušte.
 - Sekce 8: Pokud mluvíte o konkrétní recenzi (třetí odstavec kapitoly 8), tak je dobré ji v práci ukázat.
 - (SOLVED, ADD CONCLUSIONS FROM 1.) Sekce 9: Zhodnocení výsledků patří do kapitoly (samostatné nebo k výsledkům) ne do závěru. Závěr by měl pouze shrnout a zhodnotit celou práci, tj. vypíchnout informace v práci uvedené.
-- Bibliografie: : záznamy jsou neúplné, chybí názvy konferencí, časopisů aj.
+- (SOLVED) Bibliografie: : záznamy jsou neúplné, chybí názvy konferencí, časopisů aj.
 
 Práci přepracujte do semináře příští týden, kde odprezentujete její novou verzi.
 
