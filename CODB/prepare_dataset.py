@@ -5,12 +5,13 @@ import csv
 import math
 
 input_file_name = argv[1]
+out_name = argv[2]
 
-with open('./data/codb_dataset_nlp_final.arff', 'w') as codb:
+with open('../data/' + out_name, 'w') as codb:
     with open(input_file_name, 'r') as reviews:
         reader = csv.reader(reviews, delimiter= ',')
         writer = csv.writer(codb, delimiter = ',')
-        codb.write('@relation nlp\n')
+        codb.write('@relation lsa\n')
 
         for i in range(len(next(reader)) - 2):
             codb.write('@attribute \'nlp_%i\' real\n' % i)
