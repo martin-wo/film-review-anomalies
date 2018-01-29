@@ -2,7 +2,7 @@ Dobrý den,
 
 prošli jsme váš projekt a máme k němu několik výtek:
 
-1. Jedním z vašich úkolů v zadání byla klasifikace. Na té se dá dobře a jednoduše vyzkoušet potenciál vašich nově vytvořených features. Součástí toho byla i cross-validace počtu kategorií. Toto celé v práci chybí.
+1. (SOLVED) Jedním z vašich úkolů v zadání byla klasifikace. Na té se dá dobře a jednoduše vyzkoušet potenciál vašich nově vytvořených features. Součástí toho byla i cross-validace počtu kategorií. Toto celé v práci chybí.
 
 2. (SOLVED) Cílem bylo také srovnat se s Kristýnou. To máte sice uvedené v závěru, ale chtělo by to více rozepsat a podpořit měřením. Není mi jasné, jestli mezi 12 anomálními příklady v tabulce 4 jsou i ty anomálie nalezené Kristýnou. Pokud ano, vypíchněte je (samostatný odstavec/kapitola). Pokud ne, proveďte podobné měření s anomáliemi z její práce.
 
