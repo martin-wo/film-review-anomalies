@@ -10,7 +10,7 @@ prošli jsme váš projekt a máme k němu několik výtek:
 
 Další poznámky:
 - (SOLVED) Sekce 2: Kristýna nepoužila ani STanfordNLP ani lemmatizaci, ale stemmizaci.
-- Sekce 3: jakou reprezentaci hodnot v bag-of-words jste použili? + Vyjádření o tf-idf je nepřesné, je to varianta bag-of-words.
+- (SOLVED) Sekce 3: jakou reprezentaci hodnot v bag-of-words jste použili? + Vyjádření o tf-idf je nepřesné, je to varianta bag-of-words.
 - Sekce 5: "300 latent dimensions" - odkud toto doporučení pochází? Citujte. 
 - (SOLVED) Sekce 6.3: úplně mimo. V názvu je LOFactor, ale píšete o úplně jiné metodě. Tuto sekci prosím zrušte.
 - (THERE WILL BE NEW RESULTS - NON-RELEVANT NOW) Sekce 8: Pokud mluvíte o konkrétní recenzi (třetí odstavec kapitoly 8), tak je dobré ji v práci ukázat.
