@@ -1,0 +1,11 @@
+RF-OEX_LSA_train,RF-OEX_LSA_test,RF-OEX_NLP_train,RF-OEX_NLP_test
+9837_train_n,11869_test_n,2687_train_n,6257_test_p
+8669_train_p,4615_test_n,6086_train_p,1599_test_p
+247_train_p,11180_test_n,12243_train_n,2237_test_p
+6953_train_n,1973_test_p,9826_train_p,1895_test_p
+5946_train_n,6681_test_n,7624_train_n,9909_test_p
+196_train_n,3452_test_p,1404_train_n,5675_test_p
+709_train_p,6378_test_p,9958_train_n,3754_test_p
+4963_train_p,8917_test_p,11842_train_p,1639_test_p
+7521_train_p,4067_test_p,8669_train_p,7397_test_p
+264_train_n,4234_test_n,10789_train_n,1520_test_n

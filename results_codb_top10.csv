@@ -1,0 +1,11 @@
+CODB_LSA_train,CODB_LSA_test,CODB_NLP_train,CODB_NLP_test
+1694_train_p,7460_test_n,7624_train_n,1362_test_n
+4060_train_p,4587_test_n,11832_train_n,8941_test_n
+6076_train_p,5511_test_n,8010_train_n,5120_test_n
+1138_train_p,5749_test_n,2100_train_n,647_test_n
+1252_train_p,3187_test_n,5947_train_n,6294_test_n
+10371_train_p,2282_test_n,11292_train_n,9854_test_n
+9110_train_p,3215_test_n,2323_train_n,7804_test_n
+7283_train_p,10161_test_p,7839_train_n,12196_test_n
+9906_train_p,2742_test_n,2687_train_n,4298_test_p
+6501_train_p,9871_test_p,4970_train_n,4697_test_n
